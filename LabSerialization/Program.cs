@@ -12,10 +12,10 @@ namespace LabSerialization
         public static void Main(string[] args)
         {
             PhoneList phoneList = new PhoneList();
+
             phoneList.Deserialize();
             
-            /*
-            Contact contactOne = new Contact("Tuan", "0833666722", "tuancui@gmail.com", "Tuan lop IT");
+            /*Contact contactOne = new Contact("Tuan", "0833666722", "tuancui@gmail.com", "Tuan lop IT");
             Contact contactTwo = new Contact("Hoang", "0817702217", "phuonghoang@gmail.com", "Cung phong");
             Contact contactThree = new Contact("Hua", "0913648955", "vanhua@gmail.com", "Hua lop triet hoc'");
             Contact contactFour = new Contact("Josh", "0824225359", "josh1999@gmail.com", "Josh o gan nha");
@@ -31,7 +31,6 @@ namespace LabSerialization
             
             phoneList.Serialize();
             */
-            
             /*
             FileStream fileStream = new FileStream("student.bin", FileMode.Create);
             BinaryFormatter binaryFormatter = new BinaryFormatter();

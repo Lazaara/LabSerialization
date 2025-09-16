@@ -100,18 +100,45 @@ namespace LabSerialization
 
         public void Serialize()
         {
-            FileStream fileStream = new FileStream("student.bin", FileMode.Create);
+            
+            Type[] knownTypes = new Type[] 
+            { 
+                typeof(LinkedList<Contact>), 
+                typeof(Contact)
+            };
+            
+            using (FileStream fileStream = new FileStream("PhoneList.bin", FileMode.Create))
+            {
+                DataContractSerializer serializer = new DataContractSerializer(typeof(PhoneList), knownTypes);
+                serializer.WriteObject(fileStream, this);
+            }
+
+            /*FileStream fileStream = new FileStream("PhoneList.bin", FileMode.Create);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             binaryFormatter.Serialize(fileStream, contacts);
-            fileStream.Close();
+            fileStream.Close();*/
         }
 
         public void Deserialize()
         {
-            FileStream fileStream = new FileStream("student.bin", FileMode.Open);
+            
+            Type[] knownTypes = new Type[] 
+            { 
+                typeof(LinkedList<Contact>), 
+                typeof(Contact)
+            };
+            
+            using (FileStream fileStream = new FileStream("PhoneList.bin", FileMode.Open))
+            {
+                DataContractSerializer serializer = new DataContractSerializer(typeof(PhoneList), knownTypes);
+                PhoneList loaded = (PhoneList)serializer.ReadObject(fileStream);
+                contacts = loaded.contacts;
+            }
+            
+            /*FileStream fileStream = new FileStream("student.bin", FileMode.Open);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             contacts = (LinkedList<Contact>)binaryFormatter.Deserialize(fileStream);
-            fileStream.Close();
+            fileStream.Close();*/
         }
     }
 }
