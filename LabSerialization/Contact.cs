@@ -18,7 +18,7 @@ namespace LabSerialization
             this.email = email;
             this.note = note;
         }
-
+        
         public Contact(SerializationInfo info, StreamingContext context)
         {
             name = info.GetString("name");
@@ -82,6 +82,8 @@ namespace LabSerialization
             info.AddValue("email", email);
             info.AddValue("note", note);
         }
+
+
 
         public override string ToString()
         {

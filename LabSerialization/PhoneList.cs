@@ -14,6 +14,12 @@ namespace LabSerialization
         {
             contacts = new LinkedList<Contact>();
         }
+        
+        public PhoneList(SerializationInfo info, StreamingContext context)
+        {
+            contacts = (LinkedList<Contact>)info.GetValue("Contacts", typeof(LinkedList<Contact>));
+        }
+
 
         public void Add(Contact contact)
         {
@@ -91,12 +97,7 @@ namespace LabSerialization
         {
             info.AddValue("Contacts", contacts);
         }
-
-        public PhoneList(SerializationInfo info, StreamingContext context)
-        {
-            contacts = (LinkedList<Contact>)info.GetValue("Contacts", typeof(LinkedList<Contact>));
-        }
-
+        
         public void Serialize()
         {
             
