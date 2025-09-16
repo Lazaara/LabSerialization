@@ -15,10 +15,12 @@ namespace LabSerialization
 
             if (File.Exists("phoneList.bin"))
             {
+                Console.WriteLine("File ton tai");
                 phoneList.Deserialize();
             }
             else
             {
+                Console.WriteLine("File khong ton tai");
                 Contact contactOne = new Contact("Tuan", "0833666722", "tuancui@gmail.com", "Tuan lop IT");
                 Contact contactTwo = new Contact("Hoang", "0817702217", "phuonghoang@gmail.com", "Cung phong");
                 Contact contactThree = new Contact("Hua", "0913648955", "vanhua@gmail.com", "Hua lop triet hoc'");
