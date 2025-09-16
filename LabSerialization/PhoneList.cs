@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace LabSerialization
 {
@@ -101,7 +100,7 @@ namespace LabSerialization
         public void Serialize()
         {
             
-            Type[] knownTypes = new Type[] 
+            Type[] types = new Type[] 
             { 
                 typeof(LinkedList<Contact>), 
                 typeof(Contact)
@@ -109,20 +108,16 @@ namespace LabSerialization
             
             using (FileStream fileStream = new FileStream("PhoneList.bin", FileMode.Create))
             {
-                DataContractSerializer serializer = new DataContractSerializer(typeof(PhoneList), knownTypes);
+                DataContractSerializer serializer = new DataContractSerializer(typeof(PhoneList), types);
                 serializer.WriteObject(fileStream, this);
             }
 
-            /*FileStream fileStream = new FileStream("PhoneList.bin", FileMode.Create);
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            binaryFormatter.Serialize(fileStream, contacts);
-            fileStream.Close();*/
         }
 
         public void Deserialize()
         {
             
-            Type[] knownTypes = new Type[] 
+            Type[] types = new Type[] 
             { 
                 typeof(LinkedList<Contact>), 
                 typeof(Contact)
@@ -130,15 +125,11 @@ namespace LabSerialization
             
             using (FileStream fileStream = new FileStream("PhoneList.bin", FileMode.Open))
             {
-                DataContractSerializer serializer = new DataContractSerializer(typeof(PhoneList), knownTypes);
+                DataContractSerializer serializer = new DataContractSerializer(typeof(PhoneList), types);
                 PhoneList loaded = (PhoneList)serializer.ReadObject(fileStream);
                 contacts = loaded.contacts;
             }
-            
-            /*FileStream fileStream = new FileStream("student.bin", FileMode.Open);
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            contacts = (LinkedList<Contact>)binaryFormatter.Deserialize(fileStream);
-            fileStream.Close();*/
+
         }
     }
 }
